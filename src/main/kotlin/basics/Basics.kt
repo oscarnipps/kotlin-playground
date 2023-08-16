@@ -2,10 +2,9 @@ package basics
 
 const val CONSTANT_TYPE = "constant value"
 
-
 fun main() {
     //showStringPractice()
-    showNumberPractice()
+    //showNumberPractice()
 }
 
 fun showStringPractice() {
@@ -76,3 +75,5 @@ fun getMultiLineString() : String {
 fun showStringLength(value: String) {
     println("$value has length of ${value.length}")
 }
+
+

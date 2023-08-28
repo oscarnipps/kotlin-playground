@@ -8,7 +8,7 @@ fun whenLoopPractice() {
     /*
     * NOTES:
     * - when is Exhaustive if it's returning a value i.e would need to have a when branch
-    * - can capture a subject i.e assign a variable in the conditon block and use it within the block
+    * - can capture a subject i.e assign a variable in the condition block and use it within the block , this is best used to capture the result of s function
     */
 
     //using basic when

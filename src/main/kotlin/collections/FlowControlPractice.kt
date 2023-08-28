@@ -1,10 +1,48 @@
 package collections
 
 fun main() {
-    forLoopPractice()
+    whenLoopPractice()
 }
 
 fun whenLoopPractice() {
+    /*
+    * NOTES:
+    * - when is Exhaustive if it's returning a value i.e would need to have a when branch
+    * - can capture a subject i.e assign a variable in the conditon block and use it within the block
+    */
+
+    //using basic when
+    val subType = "premium"
+    when (subType) {
+        "basic" -> println("subscription type is basic")
+        "premium" -> println("subscription type is premium")
+        "classic" -> println("subscription type is classic")
+        "gold" -> {
+            println("subscription type does not exist")
+        }
+        else -> {
+
+        }
+    }
+
+    //using while to return value
+    val subTypeCode = when (subType) {
+        "basic" -> 1
+        "premium" -> 2
+        "classic" -> 3
+        "gold" -> 4
+        else -> 0
+    }
+    println("subscription type code is $subTypeCode")
+
+    //using when with capturing the subject
+   val isTypeValid = when (val count = subType.length) {
+        in 0..4 ->  true
+        in 5..10 ->  true
+        in 11..15 ->  true
+       else -> false
+    }
+    println("subscription type is valid : $isTypeValid")
 
 }
 
@@ -41,5 +79,4 @@ fun forLoopPractice() {
 }
 
 fun whileLoopPractice() {
-
 }

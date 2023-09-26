@@ -1,10 +1,7 @@
 import classes.SchoolEvent
 
 fun main() {
-    /*
-    * NOTES:
-    * - function overloading is when you have functions with the sam name but different parameters
-    */
+
     varArgPractice(
         "dave",
         "mike",
@@ -18,29 +15,38 @@ fun main() {
     scopeFunctionsPractice()
 }
 
+/*
+* NOTES:
+* - function overloading is when you have functions with the sam name but different parameters
+*/
 fun varArgPractice(vararg names: String) {
     for (name in names) {
         println(name)
     }
 }
 
+/*
+* NOTES:
+* - higher order function : function that takes a function as a parameter
+* - when using lambda functions , you put the arguments within the parentheses and the lambda outside the parentheses
+* - function overloading is when you have functions with the sam name but different parameters
+*/
 fun higherOrderFunctionPractice() {
     val name = "ben davies"
 
-    //when using lambda functions , you put the arguments within the parentheses and the lambda outside the parentheses
+    //
     logUserName(name) {
         println("welcome back $name")
     }
 
 }
 
-//higher order function : function that takes a function as a parameter
 fun logUserName(userName: String, displayInfo: (String) -> Unit) {
     displayInfo(userName)
 }
 
 /*
-* NOTES:
+* NOTES: Scope Functions
 * - let scope function only executes if the variable is not null
 * - let can also be used for assigning , where it always returns the last line's type
 * - also is used for doing some additional modifications (it's quite similar to apply , it returns the object back)
@@ -73,6 +79,45 @@ fun scopeFunctionsPractice() {
         isCanceled = true
         duration = "1hr"
     }
+}
 
 
+/*
+* NOTES: Extension Functions
+* - can be called on any data type
+*/
+fun SchoolEvent.logUserName() {
+    println(name)
+}
+
+fun extensionFunctionPractice() {
+    val event = SchoolEvent(name = "prom night", duration = "4hrs", isCanceled = false)
+    event.logUserName() //use extension function
+}
+
+/*
+* NOTES: Lazy Keyword
+* - useful to save memory by initializing only when needed
+* - used only with val
+*/
+fun lazyPractice() {
+    //initialized when accessed
+    val lazyResult : String by lazy{
+        "result of some heavy computation"
+    }
+}
+
+
+
+/*
+*   NOTES: Inline, Crossline and NoInline functions
+* - inline functions should be considered when the function has a lambda as a parameter
+* - it leads to higher performance when executing the function by reducing the function stack where it embeds the function definition
+*   in the body of the call stack (i.e reducing the function stack which leads to better runtime performance)
+* - crossinline used to inline closure bodies (when a lambada parameter is used within a lambda / closure , it's then separated into it's own class)
+*/
+inline fun displayUserDetails(userName : String , crossinline logger : (String)-> Unit) {
+    Runnable {
+        logger("")
+    }
 }

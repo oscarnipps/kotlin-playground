@@ -114,10 +114,57 @@ object FileAccess{
 */
 open class SchoolEvent(var name : String ,var duration : String , var isCanceled : Boolean)
 
+/*
+* NOTES: Data Class
+* - used to hold data
+* - can have a body but not required
+* - generates methods by default (equals(), copy(), toString())
+* - has at least one parameter in the constructor and must be either val or var
+* - the equals() or '==' compares the items (variable values) within the data class objects ( unlike regular classes that compares the reference)
+* - the toString() prints out the object details unlike regular classes that prints out the object reference
+* - the copy() allows copying the data and also update some information on the fly i.e val recipe = recipe.copy(name = "soup")
+*/
+data class Recipe(
+    val id : String,
+    val name : String,
+    val category : String
+)
 
 
 /*
-* NOTES:
+* NOTES: Enum Class
+* - used to hold data
+* - can have parameters
+*/
+enum class RecipeCategory(var level : String){
+    SOUPS("beginner"),
+    BREAKFAST("beginner"),
+    LUNCH("beginner"),
+    DINNER("beginner")
+}
+
+fun enumPractice() {
+    val recipeLevel = RecipeCategory.BREAKFAST.level
+    val recipeName = RecipeCategory.BREAKFAST.name
+    val recipeOrdinal = RecipeCategory.BREAKFAST.ordinal
+}
+
+
+/*
+* NOTES: Sealed Class
+* - used for strict hierarchy definition
+* - are abstract by default , they can not be instantiated
+* - useful in when statements
+* - can hold data classes , objects or other classes as well
+* - if you do not need parameters then a sealed interface should be used
+*/
+sealed class AppError {
+    object HttpError : AppError()
+    data class NetworkError(val code : String) : AppError()
+}
+
+/*
+* NOTES: Scopes
 * - 'private' scoped variables are only accessible from within the class itself
 * - 'protected' scoped variables are only accessible from within the class itself and classes that inherit from it
 * - 'internal' scoped variables are only accessible from within the same package
